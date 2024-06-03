@@ -1,0 +1,4 @@
+.operate-button {
+    display: flex;
+    justify-content: space-evenly;
+}
