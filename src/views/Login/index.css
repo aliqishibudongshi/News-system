@@ -1,0 +1,27 @@
+.login-form-container {
+    background: rgb(35, 39, 65);
+    height: 100%;
+    overflow: hidden;
+}
+
+.login-form-container .ant-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    width: 500px;
+    height: 300px;
+    padding: 20px;
+}
+.login-form-container .ant-form-item .ant-form-item-label >label {
+    color: #fff;
+}
+
+.login-form-title {
+    text-align: center;
+    height: 80px;
+    line-height: 80px;
+    font-size: 30px;
+    color: #fff;
+}

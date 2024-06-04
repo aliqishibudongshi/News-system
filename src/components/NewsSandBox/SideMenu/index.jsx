@@ -63,14 +63,15 @@ export default function SideMenu() {
 
     const [menuList, setMenuList] = useState([]);
 
+    const {role: {rights}} = JSON.parse(localStorage.getItem("token")); 
     const items = (menuList) => {
         let data = [];
         menuList.map(item => {
             const { label, key, children, pagepermission } = item;
-            if (item.children && item.children.length !== 0) {
+            if (item.children && item.children.length !== 0 && rights.includes(key)) {
                 return data.push(getItem(label, key, iconList[key], items(children)))
             }
-            return pagepermission && data.push(getItem(label, key, iconList[key]))
+            return pagepermission && rights.includes(key) && data.push(getItem(label, key, iconList[key]))
         })
         return data;
     }

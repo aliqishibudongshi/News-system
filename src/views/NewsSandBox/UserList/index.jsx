@@ -3,7 +3,6 @@ import { Table, Button, Modal, Form, Switch, Input, Select } from "antd";
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
 import axios from "axios";
 import "./index.css"
-import { useRef } from 'react';
 
 const { confirm } = Modal;
 const { Option } = Select;
@@ -14,16 +13,29 @@ export default function UserList() {
     const [regionList, setRegionList] = useState([]);
     const [roleList, setRoleList] = useState([]);
     const [isDisabled, setIsDisabled] = useState(false);
-    const [isAdd, setIsAdd] = useState(false);
+    const [isAdd, setIsAdd] = useState(true);
     const [editOneUser, setEditOneUser] = useState(null);
 
+    // localStorage中把username，region，roleId取出
+    const { roleId, region, username } = JSON.parse(localStorage.getItem('token'));
     useEffect(() => {
         setLoading(true);
+        // 为了明白123什么意思，对roleId做一个对象映射
+        const roleObj = {
+            "1": "superadmin",
+            "2": "admin",
+            "3": "editor"
+        }
         axios.get("http://localhost:5000/users?_expand=role").then(res => {
-            setDataSource(res.data);
+            // 这里需要对数据做一个过滤，超级管理员显示全部人员，区域管理员只显示自己和同自己同区域且级别低的。
+            setDataSource(roleObj[roleId] === "superadmin" ? res.data : [
+                ...res.data.filter(item => item.username === username),
+                ...res.data.filter(item => item.region === region && roleObj[item.roleId] === "editor")
+            ]);
             setLoading(false);
         })
-    }, []);
+    }, [region, roleId, username]);
+
     useEffect(() => {
         setLoading(true);
         axios.get("http://localhost:5000/regions").then(res => {
@@ -31,6 +43,7 @@ export default function UserList() {
             setLoading(false);
         })
     }, []);
+
     useEffect(() => {
         setLoading(true);
         axios.get("http://localhost:5000/roles").then(res => {
@@ -38,7 +51,6 @@ export default function UserList() {
             setLoading(false);
         })
     }, []);
-
 
     // Table组件相关
     const columns = [
@@ -134,6 +146,53 @@ export default function UserList() {
         setLoading(false);
     }
 
+    const roleObj = {
+        "1": "superadmin",
+        "2": "admin",
+        "3": "editor"
+    }
+    // 根据角色等级禁用【角色】选项
+    const checkRoleDisabled = (id) => {
+        // 更新状态
+        // 超级管理管和非超级管理员
+        if (!isAdd) {
+            if (roleObj[roleId] === "superadmin") {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            // 添加状态
+            // 超级管理管和非超级管理员
+            if (roleObj[roleId] === "superadmin") {
+                return false;
+            } else {
+                return roleObj[id] !== "editor";
+            }
+        }
+    }
+
+    // 根据角色等级禁用【区域】选项
+    const checkRegionDisabled = (value) => {
+        // 更新状态
+        // 超级管理管和非超级管理员
+        if (!isAdd) {
+            if (roleObj[roleId] === "superadmin") {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            // 添加状态
+            // 超级管理管和非超级管理员
+            if (roleObj[roleId] === "superadmin") {
+                return false;
+            } else {
+                return value !== region
+            }
+        }
+    }
+
     // 添加用户相关
     const CollectionCreateForm = ({ onFormInstanceReady }) => {
         const [form] = Form.useForm();
@@ -188,7 +247,13 @@ export default function UserList() {
                         {
                             roleList.map(item => {
                                 return (
-                                    <Option value={item.id} key={item.id}>{item.roleName}</Option>
+                                    <Option
+                                        value={item.id}
+                                        key={item.id}
+                                        disabled={checkRoleDisabled(item.id)}
+                                    >
+                                        {item.roleName}
+                                    </Option>
                                 )
                             })
                         }
@@ -208,7 +273,13 @@ export default function UserList() {
                         {
                             regionList.map(item => {
                                 return (
-                                    <Option value={item.value} key={item.id}>{item.label}</Option>
+                                    <Option
+                                        value={item.value}
+                                        key={item.id}
+                                        disabled={checkRegionDisabled(item.value)}
+                                    >
+                                        {item.label}
+                                    </Option>
                                 )
                             })
                         }

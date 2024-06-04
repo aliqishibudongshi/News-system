@@ -5,6 +5,7 @@ import {
     UserOutlined
 } from '@ant-design/icons';
 import { Button, Layout, theme, Dropdown, message, Space, Avatar } from 'antd';
+import { useNavigate } from 'react-router-dom';
 // 引入消息订阅-发布
 import PubSub from "pubsub-js";
 import "./index.css"
@@ -12,6 +13,7 @@ import "./index.css"
 const { Header } = Layout;
 
 export default function TopHeader() {
+    const navigate = useNavigate();
     const [collapsed, setCollapsed] = useState(true);
     const {
         token: { colorBgContainer },
@@ -22,9 +24,10 @@ export default function TopHeader() {
         setCollapsed(!collapsed);
         PubSub.publish("collapsed", collapsed);
     }
+    const {role: {roleName}, username} = JSON.parse(localStorage.getItem("token")); 
     const items = [
         {
-            label: '超级管理员',
+            label: `${roleName}`,
             key: '1',
         },
         {
@@ -34,7 +37,10 @@ export default function TopHeader() {
         },
     ];
     const onClick = ({ key }) => {
-        message.info(`Click on item ${key}`);
+        if(key === "2"){
+            localStorage.removeItem("token");
+            navigate("/login");
+        }
     };
     return (
         <Header
@@ -55,7 +61,7 @@ export default function TopHeader() {
             />
             <span>首页</span>
             <div className='top-header-welcome'>
-                <span >欢迎admin回来</span>
+                <span>欢迎<b className='welcome-user'>{username}</b>回来</span>
                 <Dropdown
                     menu={{
                         items,

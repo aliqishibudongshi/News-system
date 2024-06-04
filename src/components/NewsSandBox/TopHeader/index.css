@@ -4,3 +4,6 @@
 .top-header-welcome span {
     margin-right: 5px;
 }
+.top-header-welcome .welcome-user {
+    color: #1890ff;
+}
