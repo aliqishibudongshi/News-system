@@ -110,7 +110,7 @@ export default function NewsAdd() {
                     >
                         <Form.Item
                             label="新闻标题"
-                            name="title"
+                            name="label"
                             rules={[
                                 {
                                     required: true,
