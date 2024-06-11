@@ -1,0 +1,19 @@
+.news-add .news-add-title {
+    font-size: 26px;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.news-add .hidden {
+    display: none;
+}
+
+.news-add .news-add-step {
+    margin-top: 50px;
+}
+
+.news-add .news-add-btns {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
