@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Descriptions } from 'antd';
+import { Descriptions, Tag } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -16,8 +16,10 @@ export default function NewsPreview() {
         })
     }, [id]);
 
-    const auditList = ["未审核", "审核中", "已通过", "未通过"]; 
-    const publishList = ["未发布", "待发布", "已上线", "已下线"]; 
+    const auditList = ["未审核", "审核中", "已通过", "未通过"];
+    const publishList = ["未发布", "待发布", "已上线", "已下线"];
+    const colorList = ['default', 'warning', 'success', 'error'];
+
 
     const items = [
         {
@@ -48,12 +50,12 @@ export default function NewsPreview() {
         {
             key: '6',
             label: '审核状态',
-            children: auditList[newsInfo?.auditState],
+            children: <Tag color={colorList[newsInfo?.auditState]}>{auditList[newsInfo?.auditState]}</Tag>,
         },
         {
             key: '7',
             label: '发布状态',
-            children: publishList[newsInfo?.publishState],
+            children: <Tag color={colorList[newsInfo?.publishState]}>{publishList[newsInfo?.publishState]}</Tag>,
         },
         {
             key: '8',
@@ -81,7 +83,7 @@ export default function NewsPreview() {
                         <span className='back'>返回</span>
                     </Link>
                     <Descriptions title={newsInfo.label} items={items} />
-                    <div className='news-preview-content' dangerouslySetInnerHTML={{__html: newsInfo.content}}></div>
+                    <div className='news-preview-content' dangerouslySetInnerHTML={{ __html: newsInfo.content }}></div>
                 </div>
             }
         </div>
