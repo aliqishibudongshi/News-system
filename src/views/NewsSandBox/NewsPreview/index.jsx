@@ -76,7 +76,7 @@ export default function NewsPreview() {
         <div className='news-preview'>
             {
                 newsInfo && <div className='news-preview-container'>
-                    <Link className='news-preview-back' to={'/news-manage/draft'}>
+                    <Link className='news-preview-back' to={-1} >
                         <ArrowLeftOutlined />
                         <span className='back'>返回</span>
                     </Link>
