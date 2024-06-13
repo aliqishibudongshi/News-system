@@ -1,0 +1,15 @@
+.news-preview .news-preview-back {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.news-preview .news-preview-back .back {
+    margin-left: 5px;
+}
+
+.news-preview .news-preview-content {
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+    padding: 0px 10px;
+}

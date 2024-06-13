@@ -1,0 +1,29 @@
+.news-update .news-update-title {
+    font-size: 26px;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.news-update .news-update-back {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.news-update .news-update-back .back {
+    margin-left: 5px;
+}
+
+.news-update .hidden {
+    display: none;
+}
+
+.news-update .news-update-step {
+    margin-top: 50px;
+}
+
+.news-update .news-update-btns {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}

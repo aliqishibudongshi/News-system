@@ -17,6 +17,8 @@ import Unpublished from '../views/NewsSandBox/Unpublished';
 import Published from '../views/NewsSandBox/Published';
 import Sunset from '../views/NewsSandBox/Sunset';
 import NoPermission from '../views/NewsSandBox/NoPermission';
+import NewsPreview from '../views/NewsSandBox/NewsPreview';
+import NewsUpdate from '../views/NewsSandBox/NewsUpdate';
 
 
 export default function IndexRouter() {
@@ -56,6 +58,14 @@ export default function IndexRouter() {
                 {
                     path: "news-manage/category",
                     element: <NewsCategory />,
+                },
+                {
+                    path: "news-manage/preview/:id",
+                    element: <NewsPreview />,
+                },
+                {
+                    path: "news-manage/update/:id",
+                    element: <NewsUpdate />,
                 },
                 {
                     path: "audit-manage/audit",
