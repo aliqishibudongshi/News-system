@@ -79,7 +79,7 @@ export default function NewsUpdate() {
     }
     return (
         <div className='news-update'>
-            <Link className='news-update-back' to={'/news-manage/draft'}>
+            <Link className='news-update-back' to={-1}>
                 <ArrowLeftOutlined />
                 <span className='back'>返回</span>
             </Link>
