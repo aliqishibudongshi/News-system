@@ -612,11 +612,12 @@
       "author": "admin",
       "roleId": 1,
       "auditState": 2,
-      "publishState": 0,
+      "publishState": 2,
       "createTime": 1654416997994,
       "star": 0,
       "view": 0,
-      "id": 15
+      "id": 15,
+      "publishTime": 1718355193705
     },
     {
       "label": "测试新闻012852785",
@@ -675,7 +676,7 @@
       "id": 21
     },
     {
-      "title": "aaa",
+      "label": "aaa",
       "categoryId": 2,
       "content": "<p>sss</p>\n",
       "region": "全球",
@@ -709,12 +710,41 @@
       "region": "全球",
       "author": "admin",
       "roleId": 1,
-      "auditState": 1,
-      "publishState": 0,
+      "auditState": 2,
+      "publishState": 1,
       "createTime": 1718190202953,
       "star": 0,
       "view": 0,
       "id": 27
+    },
+    {
+      "label": "铁锤123",
+      "categoryId": 2,
+      "content": "<p><strong>123</strong></p>\n<p>铁锤</p>\n",
+      "region": "亚洲",
+      "author": "铁锤111",
+      "roleId": 2,
+      "auditState": 2,
+      "publishState": 1,
+      "createTime": 1718360681848,
+      "star": 0,
+      "view": 0,
+      "id": 28
+    },
+    {
+      "label": "张三123",
+      "categoryId": 6,
+      "content": "<p>张三</p>\n<p>摄氏度的方法<em>是maskS</em></p>\n",
+      "region": "亚洲",
+      "author": "张三",
+      "roleId": 3,
+      "auditState": 2,
+      "publishState": 2,
+      "createTime": 1718360757527,
+      "star": 0,
+      "view": 0,
+      "id": 29,
+      "publishTime": 1718360802896
     }
   ]
 }
