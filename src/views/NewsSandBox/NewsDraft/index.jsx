@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { Table, Button, Modal, notification } from "antd";
+import { Table, Button, Modal, notification, Tooltip } from "antd";
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled, UploadOutlined } from '@ant-design/icons';
 import axios from "axios";
 import "./index.css"
@@ -51,9 +51,15 @@ export default function NewsDraft() {
             render: (item) => {
                 return (
                     <div className='operate-button'>
-                        <Button danger type="primary" shape="circle" icon={<DeleteOutlined />} onClick={() => handleConfirm(item)}></Button>
-                        <Button shape="circle" icon={<EditOutlined />} onClick={() => { navigate(`/news-manage/update/${item.id}`) }}></Button>
-                        <Button type="primary" shape="circle" icon={<UploadOutlined />} onClick={() => handleSubmitReview(item.id)}></Button>
+                        <Tooltip title='删除'>
+                            <Button danger type="primary" shape="circle" icon={<DeleteOutlined />} onClick={() => handleConfirm(item)}></Button>
+                        </Tooltip>
+                        <Tooltip title='编辑'>
+                            <Button shape="circle" icon={<EditOutlined />} onClick={() => { navigate(`/news-manage/update/${item.id}`) }}></Button>
+                        </Tooltip>
+                        <Tooltip title='提交审核'>
+                            <Button type="primary" shape="circle" icon={<UploadOutlined />} onClick={() => handleSubmitReview(item.id)}></Button>
+                        </Tooltip>
                     </div >
                 )
             }

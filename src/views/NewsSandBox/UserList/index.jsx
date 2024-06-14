@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Modal, Form, Switch, Input, Select } from "antd";
+import { Table, Button, Modal, Form, Switch, Input, Select, Tooltip } from "antd";
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
 import axios from "axios";
 import "./index.css"
@@ -104,8 +104,12 @@ export default function UserList() {
             render: (item) => {
                 return (
                     <div className='operate-button'>
-                        <Button danger type="primary" shape="circle" icon={<DeleteOutlined />} onClick={() => handleConfirm(item)} disabled={item.default}></Button>
-                        <Button type="primary" shape="circle" icon={<EditOutlined />} disabled={item.default} onClick={() => handleEdit(item)}></Button>
+                        <Tooltip title="删除">
+                            <Button danger type="primary" shape="circle" icon={<DeleteOutlined />} onClick={() => handleConfirm(item)} disabled={item.default}></Button>
+                        </Tooltip>
+                        <Tooltip title="编辑">
+                            <Button type="primary" shape="circle" icon={<EditOutlined />} disabled={item.default} onClick={() => handleEdit(item)}></Button>
+                        </Tooltip>
                     </div >
                 )
             }

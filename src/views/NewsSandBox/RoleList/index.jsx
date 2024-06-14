@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Button, Modal, Tree } from "antd";
+import { Table, Button, Modal, Tree, Tooltip } from "antd";
 import { DeleteOutlined, UnorderedListOutlined, ExclamationCircleFilled } from '@ant-design/icons';
 import axios from "axios";
 import "./index.css"
@@ -50,8 +50,12 @@ export default function RoleList() {
             render: (item) => {
                 return (
                     <div className='operate-button'>
-                        <Button danger type="primary" shape="circle" icon={<DeleteOutlined />} onClick={() => handleConfirm(item)}></Button>
-                        <Button type="primary" shape="circle" icon={<UnorderedListOutlined />} onClick={() => showModal(item)}></Button>
+                        <Tooltip title='删除'>
+                            <Button danger type="primary" shape="circle" icon={<DeleteOutlined />} onClick={() => handleConfirm(item)}></Button>
+                        </Tooltip>
+                        <Tooltip title='编辑'>
+                            <Button type="primary" shape="circle" icon={<UnorderedListOutlined />} onClick={() => showModal(item)}></Button>
+                        </Tooltip>
                         <Modal title="权限分配" open={isModalOpen} onOk={() => handleOk(item)} onCancel={handleCancel}>
                             <Tree
                                 checkedKeys={currentRights}

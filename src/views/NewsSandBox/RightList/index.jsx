@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Tag, Modal, Popover, Switch } from "antd";
+import { Table, Button, Tag, Modal, Popover, Switch, Tooltip } from "antd";
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
 import axios from "axios";
 import "./index.css"
@@ -54,7 +54,9 @@ export default function RightList() {
             render: (item) => {
                 return (
                     <div className='operate-button'>
-                        <Button danger type="primary" shape="circle" icon={<DeleteOutlined />} onClick={() => handleConfirm(item)}></Button>
+                        <Tooltip title='删除'>
+                            <Button danger type="primary" shape="circle" icon={<DeleteOutlined />} onClick={() => handleConfirm(item)}></Button>
+                        </Tooltip>
                         <Popover content={
                             <Switch checked={item.pagepermission} onChange={() => handleSwitch(item)} />
                         } title="页面配置项" trigger={item.pagepermission === undefined ? "" : "click"}>
@@ -85,7 +87,7 @@ export default function RightList() {
             onOk() {
                 handleOkDelete(item);
             },
-            onCancel() {},
+            onCancel() { },
         });
     };
 
