@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Button, Steps, Form, Input, Select, message, notification } from 'antd';
 import axios from 'axios';
-import NewsEditor from '../../../components/NewsSandBox/NewsEditor';
+import NewsEditor from '../../../components/NewsEditor';
 import "./index.css";
 
 const { Option } = Select;
