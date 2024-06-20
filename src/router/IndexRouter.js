@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navigate, useRoutes } from 'react-router-dom';
-
+import { connect } from 'react-redux';
+import { Spin } from "antd";
 import Login from '../views/Login'
 import NewsSandBox from '../views/NewsSandBox';
 import LoginInterceptorRouter from './InterceptorRouter ';
@@ -21,7 +22,7 @@ import NewsPreview from '../views/NewsSandBox/NewsPreview';
 import NewsUpdate from '../views/NewsSandBox/NewsUpdate';
 
 
-export default function IndexRouter() {
+function IndexRouter(props) {
     const element = useRoutes([
         {
             path: "/",
@@ -99,6 +100,11 @@ export default function IndexRouter() {
         },
     ])
     return (
-        element
+        <Spin size='large' spinning={props.isLoading}>{element}</Spin>
+        
     )
 }
+const mapStateToProps = ({ loadingReducer: { isLoading } }) => ({
+    isLoading
+})
+export default connect(mapStateToProps)(IndexRouter);

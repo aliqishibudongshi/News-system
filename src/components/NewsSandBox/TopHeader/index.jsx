@@ -4,7 +4,7 @@ import {
     MenuUnfoldOutlined,
     UserOutlined
 } from '@ant-design/icons';
-import { Button, Layout, theme, Dropdown, message, Space, Avatar } from 'antd';
+import { Button, Layout, theme, Dropdown, Space, Avatar } from 'antd';
 import { useNavigate } from 'react-router-dom';
 // 引入消息订阅-发布
 import PubSub from "pubsub-js";
@@ -24,7 +24,7 @@ export default function TopHeader() {
         setCollapsed(!collapsed);
         PubSub.publish("collapsed", collapsed);
     }
-    const {role: {roleName}, username} = JSON.parse(localStorage.getItem("token")); 
+    const { role: { roleName }, username } = JSON.parse(localStorage.getItem("token"));
     const items = [
         {
             label: `${roleName}`,
@@ -37,7 +37,7 @@ export default function TopHeader() {
         },
     ];
     const onClick = ({ key }) => {
-        if(key === "2"){
+        if (key === "2") {
             localStorage.removeItem("token");
             navigate("/login");
         }
