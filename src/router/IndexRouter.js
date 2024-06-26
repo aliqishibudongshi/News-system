@@ -20,6 +20,8 @@ import Sunset from '../views/NewsSandBox/Sunset';
 import NoPermission from '../views/NewsSandBox/NoPermission';
 import NewsPreview from '../views/NewsSandBox/NewsPreview';
 import NewsUpdate from '../views/NewsSandBox/NewsUpdate';
+import NewsList from '../views/News/NewsList';
+import NewsDetail from '../views/News/NewsDetail';
 
 
 function IndexRouter(props) {
@@ -98,10 +100,17 @@ function IndexRouter(props) {
             path: "/login",
             element: <Login />
         },
+        {
+            path: "/news",
+            element: <NewsList />
+        },
+        {
+            path: "/detail/:id",
+            element: <NewsDetail />
+        },
     ])
     return (
-        <Spin size='large' spinning={props.isLoading}>{element}</Spin>
-        
+        <Spin size='large' spinning={props.isLoading}>{element}</Spin>    
     )
 }
 const mapStateToProps = ({ loadingReducer: { isLoading } }) => ({

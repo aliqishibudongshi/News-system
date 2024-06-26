@@ -1,0 +1,15 @@
+.news-list {
+    width: 95%;
+    margin: 0 auto;
+}
+.news-list-title {
+    padding: 20px;
+}
+.news-list-title .title{
+    font-weight: bold;
+    font-size: 30px;
+    margin-right: 15px;
+}
+.news-list-title .sub-title {
+    color: #ccc;
+}

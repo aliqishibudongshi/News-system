@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Col, Row, Avatar, List, Drawer } from 'antd';
-import { EditOutlined, EllipsisOutlined, PieChartOutlined } from '@ant-design/icons';
+import { PieChartOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import * as echarts from 'echarts';
 import _ from "lodash"
@@ -168,9 +168,7 @@ export default function Home() {
                                 setTimeout(() => {
                                     renderPieView()
                                 }, 1000);
-                            }} />,
-                            <EditOutlined key="edit" />,
-                            <EllipsisOutlined key="ellipsis" />,
+                            }} />
                         ]}
                     >
                         <Meta
